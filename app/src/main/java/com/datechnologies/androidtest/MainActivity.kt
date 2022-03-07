@@ -1,27 +1,21 @@
-package com.datechnologies.androidtest;
+package com.datechnologies.androidtest
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.View;
-
-import com.datechnologies.androidtest.animation.AnimationActivity;
-import com.datechnologies.androidtest.chat.ChatActivity;
-import com.datechnologies.androidtest.login.LoginActivity;
+import android.os.Bundle
+import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+import com.datechnologies.androidtest.animation.AnimationActivity
+import com.datechnologies.androidtest.chat.ChatActivity
+import com.datechnologies.androidtest.login.LoginActivity
 
 /**
  * The main screen that lets you navigate to all other screens in the app.
  *
  */
-
-public class MainActivity extends AppCompatActivity {
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setTitle(R.string.activity_main_title);
-        setContentView(R.layout.activity_main);
-
-
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setTitle(R.string.activity_main_title)
+        setContentView(R.layout.activity_main)
         /**
          * =========================================================================================
          * INSTRUCTIONS
@@ -30,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
          * 1. UI must work on Android phones of multiple sizes. Do not worry about Android Tablets.
          *
          * 2. Use this starter project as a base and build upon it. It is ok to remove some of the
-         *    provided code if necessary.
+         * provided code if necessary.
          *
          * 3. Read the additional 'TODO' comments throughout the codebase, they will guide you.
          *
@@ -47,19 +41,15 @@ public class MainActivity extends AppCompatActivity {
     //==============================================================================================
     // Button Click Methods
     //==============================================================================================
-
-    public void onChatClicked(View v)
-    {
-        ChatActivity.start(this);
+    fun onChatClicked(v: View?) {
+        ChatActivity.start(this)
     }
 
-    public void onLoginClicked(View v)
-    {
-        LoginActivity.start(this);
+    fun onLoginClicked(v: View?) {
+        LoginActivity.start(this)
     }
 
-    public void onAnimationClicked(View v)
-    {
-        AnimationActivity.start(this);
+    fun onAnimationClicked(v: View?) {
+        AnimationActivity.start(this)
     }
 }

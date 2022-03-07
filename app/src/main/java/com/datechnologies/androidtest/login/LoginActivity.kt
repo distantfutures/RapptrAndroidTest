@@ -1,44 +1,27 @@
-package com.datechnologies.androidtest.login;
+package com.datechnologies.androidtest.login
 
-import android.content.Context;
-import android.content.Intent;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-
-import com.datechnologies.androidtest.MainActivity;
-import com.datechnologies.androidtest.R;
+import android.content.Context
+import android.content.Intent
+import android.os.Bundle
+import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.AppCompatActivity
+import com.datechnologies.androidtest.MainActivity
+import com.datechnologies.androidtest.R
 
 /**
  * A screen that displays a login prompt, allowing the user to login to the D & A Technologies Web Server.
  *
  */
-public class LoginActivity extends AppCompatActivity {
-
-    //==============================================================================================
-    // Static Class Methods
-    //==============================================================================================
-
-    public static void start(Context context)
-    {
-        Intent starter = new Intent(context, LoginActivity.class);
-        context.startActivity(starter);
-    }
-
+class LoginActivity : AppCompatActivity() {
     //==============================================================================================
     // Lifecycle Methods
     //==============================================================================================
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-
-        ActionBar actionBar = getSupportActionBar();
-
-        assert actionBar != null;
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setDisplayShowHomeEnabled(true);
+    protected override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_login)
+        val actionBar: ActionBar = getSupportActionBar()!!
+        actionBar.setDisplayHomeAsUpEnabled(true)
+        actionBar.setDisplayShowHomeEnabled(true)
 
         // TODO: Make the UI look like it does in the mock-up. Allow for horizontal screen rotation.
         // TODO: Add a ripple effect when the buttons are clicked
@@ -58,10 +41,18 @@ public class LoginActivity extends AppCompatActivity {
         // TODO: so please use those to test the login.
     }
 
-    @Override
-    public void onBackPressed()
-    {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+    override fun onBackPressed() {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+    }
+
+    companion object {
+        //==============================================================================================
+        // Static Class Methods
+        //==============================================================================================
+        fun start(context: Context) {
+            val starter = Intent(context, LoginActivity::class.java)
+            context.startActivity(starter)
+        }
     }
 }
