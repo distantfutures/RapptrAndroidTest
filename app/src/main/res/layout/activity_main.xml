@@ -1,38 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-    android:layout_marginRight="@dimen/activity_horizontal_margin"
+    android:background="@drawable/gpc_background"
     tools:context=".MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginStart="@dimen/button_side_margins"
+        android:layout_marginEnd="@dimen/button_side_margins"
         android:gravity="center"
         android:orientation="vertical">
 
         <Button
+            android:id="@+id/buttonChat"
+            style="@style/ButtonsOverlay.MainScreen"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginBottom="@dimen/button_margin_bottom"
+            android:drawableLeft="@drawable/ic_chat"
             android:onClick="onChatClicked"
             android:text="@string/chat_button"
-            android:textSize="@dimen/button_text_size" />
+            android:textAlignment="textStart" />
 
         <Button
+            android:id="@+id/buttonLogIn"
+            style="@style/ButtonsOverlay.MainScreen"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginBottom="@dimen/button_margin_bottom"
+            android:drawableLeft="@drawable/ic_lock"
             android:onClick="onLoginClicked"
             android:text="@string/login_button"
-            android:textSize="@dimen/button_text_size" />
+            android:textAlignment="textStart" />
 
         <Button
+            android:id="@+id/buttonAnimation"
+            style="@style/ButtonsOverlay.MainScreen"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginBottom="@dimen/button_margin_bottom"
+            android:drawableLeft="@drawable/ic_animation"
             android:onClick="onAnimationClicked"
             android:text="@string/animation_button"
-            android:textSize="@dimen/button_text_size" />
+            android:textAlignment="textStart"/>
 
     </LinearLayout>
 

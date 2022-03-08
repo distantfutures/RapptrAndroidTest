@@ -1,11 +1,23 @@
 <resources>
-
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <!-- Buttons Structure -->
+    <style name="ButtonsOverlay" parent="Widget.AppCompat.Button">
+        <item name="android:elevation">2dp</item>
+        <item name="android:background">@drawable/ic_buttons</item>
+        <item name="android:backgroundTint">@color/button_background</item>
+    </style>
+    <!-- Main Screen Buttons Attributes -->
+    <style name="ButtonsOverlay.MainScreen" parent="ButtonsOverlay">
+        <item name="android:textSize">@dimen/button_text_size</item>
+        <item name="android:textColor">@color/chat_text</item>
+        <item name="android:paddingStart">22dp</item>
+        <item name="android:drawablePadding">16dp</item>
     </style>
 
 </resources>
