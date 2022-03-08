@@ -7,4 +7,7 @@
     <color name="button_background">#D9FFFFFF</color>
     <color name="button_blue">#0E5C89</color>
     <color name="chat_text">#1B1E1F</color>
+    <color name="chat_bubble_stroke">#EFEFEF</color>
+    <color name="chat_bubble_bg">#FFFFFF</color>
+    <color name="chat_bg">#E6E6E6</color>
 </resources>

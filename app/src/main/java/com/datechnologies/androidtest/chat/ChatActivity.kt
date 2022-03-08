@@ -5,11 +5,13 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.datechnologies.androidtest.MainActivity
 import com.datechnologies.androidtest.R
 import com.datechnologies.androidtest.api.ChatLogMessageModel
+import com.datechnologies.androidtest.databinding.ActivityChatBinding
 import java.util.ArrayList
 
 /**
@@ -19,16 +21,17 @@ class ChatActivity : AppCompatActivity() {
     //==============================================================================================
     // Class Properties
     //==============================================================================================
+    private lateinit var binding: ActivityChatBinding
     private var recyclerView: RecyclerView? = null
     private var chatAdapter: ChatAdapter? = null
 
     //==============================================================================================
     // Lifecycle Methods
     //==============================================================================================
-    protected override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
-        recyclerView = findViewById(R.id.recyclerView) as RecyclerView?
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_chat)
         val actionBar: ActionBar = getSupportActionBar()!!
         actionBar.setDisplayHomeAsUpEnabled(true)
         actionBar.setDisplayShowHomeEnabled(true)

@@ -1,29 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:background="?android:selectableItemBackground"
-              android:clickable="true"
-              android:gravity="center_vertical"
-              android:orientation="horizontal"
-              tools:background="@color/background"
-              tools:ignore="UseCompoundDrawables">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:selectableItemBackground"
+    android:clickable="true"
+    android:gravity="center_vertical"
+    tools:background="@color/background"
+    tools:ignore="UseCompoundDrawables">
 
     <ImageView
         android:id="@+id/avatarImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="8dp"
+        android:layout_marginEnd="7dp"
         android:src="@drawable/ic_avatar_placeholder"
-        tools:ignore="RtlHardcoded" />
+        tools:ignore="RtlHardcoded"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
-    <TextView
-        android:id="@+id/messageTextView"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/textLayout"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:textColor="@color/chat_text"
-        tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pharetra, sapien at luctus semper, justo dui accumsan lorem, nec pretium dui eros pharetra leo." />
+        android:orientation="vertical"
+        android:gravity="start"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/avatarImageView"
+        app:layout_constraintEnd_toEndOf="parent">
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/nameText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:textColor="@color/chat_text"
+            tools:text="Name" />
+
+        <TextView
+            android:id="@+id/messageTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:background="@drawable/chat_bubble"
+            android:textColor="@color/chat_text"
+            android:text="testingtestingtestingtestingtestingtestingtestingtestingtestingtesting"/>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

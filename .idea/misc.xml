@@ -3,13 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Andrew/AndroidStudioProjects/Applicant Projects/RapptrLabs_Android_Test/AndroidTest/app/src/main/res/drawable/chat_message.xml" value="0.37083333333333335" />
         <entry key="..\:/Users/Andrew/AndroidStudioProjects/Applicant Projects/RapptrLabs_Android_Test/AndroidTest/app/src/main/res/drawable/ic_buttons.xml" value="0.36512820512820515" />
         <entry key="..\:/Users/Andrew/AndroidStudioProjects/Applicant Projects/RapptrLabs_Android_Test/AndroidTest/app/src/main/res/drawable/ic_chat.xml" value="0.37083333333333335" />
         <entry key="..\:/Users/Andrew/AndroidStudioProjects/Applicant Projects/RapptrLabs_Android_Test/AndroidTest/app/src/main/res/layout/activity_animation.xml" value="0.17249240121580547" />
         <entry key="..\:/Users/Andrew/AndroidStudioProjects/Applicant Projects/RapptrLabs_Android_Test/AndroidTest/app/src/main/res/layout/activity_chat.xml" value="0.17249240121580547" />
         <entry key="..\:/Users/Andrew/AndroidStudioProjects/Applicant Projects/RapptrLabs_Android_Test/AndroidTest/app/src/main/res/layout/activity_login.xml" value="0.17249240121580547" />
-        <entry key="..\:/Users/Andrew/AndroidStudioProjects/Applicant Projects/RapptrLabs_Android_Test/AndroidTest/app/src/main/res/layout/activity_main.xml" value="0.25" />
-        <entry key="..\:/Users/Andrew/AndroidStudioProjects/Applicant Projects/RapptrLabs_Android_Test/AndroidTest/app/src/main/res/layout/item_chat.xml" value="0.17249240121580547" />
+        <entry key="..\:/Users/Andrew/AndroidStudioProjects/Applicant Projects/RapptrLabs_Android_Test/AndroidTest/app/src/main/res/layout/activity_main.xml" value="0.4813027744270205" />
+        <entry key="..\:/Users/Andrew/AndroidStudioProjects/Applicant Projects/RapptrLabs_Android_Test/AndroidTest/app/src/main/res/layout/item_chat.xml" value="0.5" />
       </map>
     </option>
   </component>
