@@ -6,19 +6,35 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
-    <!-- Buttons Structure -->
+    <!-- Main Screen Buttons Structure -->
     <style name="ButtonsOverlay" parent="Widget.AppCompat.Button">
         <item name="android:elevation">8dp</item>
         <item name="android:translationZ">8dp</item>
-        <item name="android:background">@drawable/ic_buttons</item>
-        <item name="android:backgroundTint">@color/button_background</item>
+        <item name="android:background">@drawable/ic_main_buttons</item>
     </style>
     <!-- Main Screen Buttons Attributes -->
-    <style name="ButtonsOverlay.MainScreen" parent="ButtonsOverlay">
+    <style name="ButtonsOverlay.IconText" parent="ButtonsOverlay">
         <item name="android:textSize">@dimen/button_text_size</item>
         <item name="android:textColor">@color/chat_text</item>
         <item name="android:paddingStart">22dp</item>
         <item name="android:drawablePadding">16dp</item>
     </style>
 
+    <!-- Box Style Buttons Structure -->
+    <style name="BoxButtonOverlay" parent="Widget.AppCompat.Button">
+        <item name="android:elevation">8dp</item>
+        <item name="android:translationZ">8dp</item>
+        <item name="android:background">@drawable/ic_login_button</item>
+    </style>
+    <!-- Box Style Buttons Attributes -->
+    <style name="BoxButtonOverlay.Text" parent="BoxButtonOverlay">
+        <item name="android:textSize">@dimen/button_text_size</item>
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
+
+    <!-- Input Text Style -->
+    <style name="LoginInput" parent="Widget.AppCompat.EditText">
+        <item name="android:textColor">@color/login_input_text</item>
+        <item name="android:textColorHint">@color/login_hint_text</item>
+    </style>
 </resources>

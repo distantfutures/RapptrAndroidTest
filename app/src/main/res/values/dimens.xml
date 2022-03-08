@@ -3,10 +3,15 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
-    <!-- Text Sizes -->
+    <!-- Main Dimensions -->
     <dimen name="button_text_size">16sp</dimen>
     <dimen name="button_height">55dp</dimen>
     <dimen name="button_side_margins">30dp</dimen>
-    <dimen name="button_margin_bottom">24dp</dimen>
+    <dimen name="button_margin_vertical">24dp</dimen>
     <dimen name="button_icon_padding_end">16dp</dimen>
+
+    <!-- Chat Dimensions -->
+    <dimen name="chat_user_name">13sp</dimen>
+    <dimen name="chat_message">15sp</dimen>
+    <dimen name="login_input_side_margins">30dp</dimen>
 </resources>
