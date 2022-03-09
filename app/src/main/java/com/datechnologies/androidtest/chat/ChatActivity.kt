@@ -3,6 +3,7 @@ package com.datechnologies.androidtest.chat
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -23,28 +24,24 @@ class ChatActivity : AppCompatActivity() {
     //==============================================================================================
     private lateinit var binding: ActivityChatBinding
     private var recyclerView: RecyclerView? = null
-    private var chatAdapter: ChatAdapter? = null
-
+    private lateinit var chatAdapter: ChatAdapter
     //==============================================================================================
     // Lifecycle Methods
     //==============================================================================================
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_chat)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_chat)
+        // ActionBar
         val actionBar: ActionBar = getSupportActionBar()!!
         actionBar.setDisplayHomeAsUpEnabled(true)
         actionBar.setDisplayShowHomeEnabled(true)
+
+        // Initialize Adapter
         chatAdapter = ChatAdapter()
-        recyclerView?.setAdapter(chatAdapter)
-        recyclerView?.setHasFixedSize(true)
-        recyclerView?.setLayoutManager(
-            LinearLayoutManager(
-                getApplicationContext(),
-                LinearLayoutManager.VERTICAL,
-                false
-            )
-        )
+        // Set LinearLayout Manager to RecyclerView
+        binding.recyclerView.layoutManager = LinearLayoutManager(this)
+        binding.recyclerView.adapter = chatAdapter
+
         val tempList: MutableList<ChatLogMessageModel> = ArrayList<ChatLogMessageModel>()
         val chatLogMessageModel = ChatLogMessageModel()
         chatLogMessageModel.message = "This is test data. Please retrieve real data."
@@ -56,7 +53,8 @@ class ChatActivity : AppCompatActivity() {
         tempList.add(chatLogMessageModel)
         tempList.add(chatLogMessageModel)
         tempList.add(chatLogMessageModel)
-        chatAdapter!!.setChatLogMessageModelList(tempList)
+        chatAdapter.setChatLogMessageModelList(tempList)
+        Log.i("ChatActTest", "${chatLogMessageModel.message}")
 
         // TODO: Make the UI look like it does in the mock-up. Allow for horizontal screen rotation.
 

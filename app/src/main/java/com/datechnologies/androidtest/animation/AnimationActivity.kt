@@ -22,7 +22,6 @@ class AnimationActivity : AppCompatActivity() {
     //==============================================================================================
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_animation)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_animation)
         val actionBar: ActionBar = getSupportActionBar()!!
         actionBar.setDisplayHomeAsUpEnabled(true)
