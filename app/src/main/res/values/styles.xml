@@ -31,10 +31,14 @@
         <item name="android:textSize">@dimen/button_text_size</item>
         <item name="android:textColor">@color/colorAccent</item>
     </style>
-
     <!-- Input Text Style -->
     <style name="LoginInput" parent="Widget.AppCompat.EditText">
         <item name="android:textColor">@color/login_input_text</item>
         <item name="android:textColorHint">@color/login_hint_text</item>
+    </style>
+    <!-- ImageView Shape Appearance  -->
+    <style name="ShapeAppearance.Image.Circular" parent="" >
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
     </style>
 </resources>

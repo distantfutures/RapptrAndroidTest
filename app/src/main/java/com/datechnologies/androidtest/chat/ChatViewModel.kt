@@ -32,7 +32,7 @@ class ChatViewModel : ViewModel() {
                 if (messages != null) {
                     _chatLog.value = messages.data
                 }
-                Log.i("ChatActTest", "Messages: ${messages!!.data.size}")
+                Log.i("ChatActTest", "Messages: ${messages!!.data}")
             } else {
                 Log.i("ChatActTest", "Failed!")
             }

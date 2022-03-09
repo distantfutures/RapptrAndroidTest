@@ -45,8 +45,8 @@ class ChatActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
 
         chatViewModel = ChatViewModel()
-        binding.recyclerView.layoutManager = LinearLayoutManager(this)
         chatAdapter = ChatAdapter()
+        binding.recyclerView.layoutManager = LinearLayoutManager(this)
         binding.recyclerView.adapter = chatAdapter
 
         chatViewModel.getChatMessages()
