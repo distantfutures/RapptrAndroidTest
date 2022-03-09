@@ -11,8 +11,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.datechnologies.androidtest.MainActivity
 import com.datechnologies.androidtest.R
+import com.datechnologies.androidtest.api.ChatApi
 import com.datechnologies.androidtest.api.ChatLogMessageModel
 import com.datechnologies.androidtest.databinding.ActivityChatBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import java.util.ArrayList
 
 /**
@@ -60,6 +65,20 @@ class ChatActivity : AppCompatActivity() {
 
         // TODO: Retrieve the chat data from http://dev.rapptrlabs.com/Tests/scripts/chat_log.php
         // TODO: Parse this chat data from JSON into ChatLogMessageModel and display it.
+        getChatMessages()
+    }
+    fun getChatMessages() {
+        val job = Job()
+        val coroutineScope = CoroutineScope(job + Dispatchers.Main)
+        coroutineScope.launch {
+            val response = ChatApi.retrofitService.getMessages()
+            if (response.isSuccessful) {
+                val messages = response.body()
+                Log.i("ChatActTest", "Messages: ${messages?.size}")
+            } else {
+                Log.i("ChatActTest", "Failed!")
+            }
+        }
     }
 
     override fun onBackPressed() {
