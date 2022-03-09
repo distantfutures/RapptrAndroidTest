@@ -5,20 +5,26 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import com.datechnologies.androidtest.MainActivity
 import com.datechnologies.androidtest.R
+import com.datechnologies.androidtest.databinding.ActivityChatBinding
+import com.datechnologies.androidtest.databinding.ActivityLoginBinding
 
 /**
  * A screen that displays a login prompt, allowing the user to login to the D & A Technologies Web Server.
  *
  */
 class LoginActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityLoginBinding
     //==============================================================================================
     // Lifecycle Methods
     //==============================================================================================
-    protected override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
         val actionBar: ActionBar = getSupportActionBar()!!
         actionBar.setDisplayHomeAsUpEnabled(true)
         actionBar.setDisplayShowHomeEnabled(true)

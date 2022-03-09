@@ -33,7 +33,7 @@ class ChatAdapter : RecyclerView.Adapter<ChatAdapter.ChatViewHolder?>() {
     //==============================================================================================
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatViewHolder {
         val itemView: View =
-            LayoutInflater.from(parent.getContext()).inflate(R.layout.item_chat, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.item_chat, parent, false)
         return ChatViewHolder(itemView)
     }
 
@@ -52,10 +52,12 @@ class ChatAdapter : RecyclerView.Adapter<ChatAdapter.ChatViewHolder?>() {
     class ChatViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var avatarImageView: ImageView
         var messageTextView: TextView
+        var userNameTextView: TextView
 
         init {
             avatarImageView = view.findViewById<View>(R.id.avatarImageView) as ImageView
             messageTextView = view.findViewById<View>(R.id.messageTextView) as TextView
+            userNameTextView = view.findViewById<View>(R.id.userNameTextView) as TextView
         }
     }
 

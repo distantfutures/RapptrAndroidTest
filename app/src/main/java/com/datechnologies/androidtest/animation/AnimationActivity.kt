@@ -5,20 +5,25 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import com.datechnologies.androidtest.MainActivity
 import com.datechnologies.androidtest.R
+import com.datechnologies.androidtest.databinding.ActivityAnimationBinding
+import com.datechnologies.androidtest.databinding.ActivityLoginBinding
 
 /**
  * Screen that displays the D & A Technologies logo.
  * The icon can be moved around on the screen as well as animated.
  */
 class AnimationActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityAnimationBinding
     //==============================================================================================
     // Lifecycle Methods
     //==============================================================================================
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_animation)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_animation)
         val actionBar: ActionBar = getSupportActionBar()!!
         actionBar.setDisplayHomeAsUpEnabled(true)
         actionBar.setDisplayShowHomeEnabled(true)
