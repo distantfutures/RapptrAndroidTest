@@ -15,7 +15,7 @@ private val retrofit = Retrofit.Builder()
 interface ChatApiService {
     @GET("Tests/scripts/chat_log.php")
     suspend fun getMessages():
-            Response<List<ChatLogMessageModel>>
+            Response<ChatData>
 }
 
 object ChatApi {

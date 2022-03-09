@@ -7,6 +7,8 @@ import android.util.Log
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.datechnologies.androidtest.MainActivity
@@ -28,7 +30,7 @@ class ChatActivity : AppCompatActivity() {
     // Class Properties
     //==============================================================================================
     private lateinit var binding: ActivityChatBinding
-    private var recyclerView: RecyclerView? = null
+    private lateinit var chatViewModel: ChatViewModel
     private lateinit var chatAdapter: ChatAdapter
     //==============================================================================================
     // Lifecycle Methods
@@ -40,45 +42,24 @@ class ChatActivity : AppCompatActivity() {
         val actionBar: ActionBar = getSupportActionBar()!!
         actionBar.setDisplayHomeAsUpEnabled(true)
         actionBar.setDisplayShowHomeEnabled(true)
+        binding.lifecycleOwner = this
 
-        // Initialize Adapter
-        chatAdapter = ChatAdapter()
-        // Set LinearLayout Manager to RecyclerView
+        chatViewModel = ChatViewModel()
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
+        chatAdapter = ChatAdapter()
         binding.recyclerView.adapter = chatAdapter
 
-        val tempList: MutableList<ChatLogMessageModel> = ArrayList<ChatLogMessageModel>()
-        val chatLogMessageModel = ChatLogMessageModel()
-        chatLogMessageModel.message = "This is test data. Please retrieve real data."
-        tempList.add(chatLogMessageModel)
-        tempList.add(chatLogMessageModel)
-        tempList.add(chatLogMessageModel)
-        tempList.add(chatLogMessageModel)
-        tempList.add(chatLogMessageModel)
-        tempList.add(chatLogMessageModel)
-        tempList.add(chatLogMessageModel)
-        tempList.add(chatLogMessageModel)
-        chatAdapter.setChatLogMessageModelList(tempList)
-        Log.i("ChatActTest", "${chatLogMessageModel.message}")
-
+        chatViewModel.getChatMessages()
+        chatViewModel.chatLog.observe(this, Observer { log ->
+            log?.let {
+                chatAdapter.setChatLogMessageModelList(log)
+            }
+        })
         // TODO: Make the UI look like it does in the mock-up. Allow for horizontal screen rotation.
 
         // TODO: Retrieve the chat data from http://dev.rapptrlabs.com/Tests/scripts/chat_log.php
         // TODO: Parse this chat data from JSON into ChatLogMessageModel and display it.
-        getChatMessages()
-    }
-    fun getChatMessages() {
-        val job = Job()
-        val coroutineScope = CoroutineScope(job + Dispatchers.Main)
-        coroutineScope.launch {
-            val response = ChatApi.retrofitService.getMessages()
-            if (response.isSuccessful) {
-                val messages = response.body()
-                Log.i("ChatActTest", "Messages: ${messages?.size}")
-            } else {
-                Log.i("ChatActTest", "Failed!")
-            }
-        }
+
     }
 
     override fun onBackPressed() {
