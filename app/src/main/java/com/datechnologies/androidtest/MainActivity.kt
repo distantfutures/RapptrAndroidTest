@@ -14,6 +14,7 @@ import com.datechnologies.androidtest.login.LoginActivity
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTheme(R.style.AppTheme)
         setTitle(R.string.activity_main_title)
         setContentView(R.layout.activity_main)
         /**

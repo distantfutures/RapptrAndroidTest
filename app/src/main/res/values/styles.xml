@@ -1,10 +1,10 @@
 <resources>
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.DayNight.DarkActionBar">
-        <!-- Customize your theme here. -->
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+        <item name="android:statusBarColor">@color/colorPrimaryDark</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
     </style>
     <!-- Main Screen Buttons Structure -->
     <style name="ButtonsOverlay" parent="Widget.AppCompat.Button">
@@ -42,5 +42,10 @@
     <style name="ShapeAppearance.Image.Circular" parent="" >
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>
+    </style>
+    <!-- Splash Screen -->
+    <style name="splashScreenTheme" parent="Theme.MaterialComponents.Light.NoActionBar" >
+        <item name="android:windowBackground">@drawable/gpc_splash</item>
+        <item name="android:statusBarColor">#000000</item>
     </style>
 </resources>

@@ -9,6 +9,7 @@
     <string name="image_city_background">Image City Background</string>
     <string name="password">Password</string>
     <string name="email">Email</string>
-    <string name="animation_text">Fade In</string>
+    <string name="fade_in">Fade In</string>
+    <string name="fade_out">Fade Out</string>
 
 </resources>

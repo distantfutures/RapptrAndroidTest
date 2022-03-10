@@ -36,7 +36,7 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
-        val actionBar: ActionBar = getSupportActionBar()!!
+        val actionBar: ActionBar = supportActionBar!!
         actionBar.setDisplayHomeAsUpEnabled(true)
         actionBar.setDisplayShowHomeEnabled(true)
         binding.lifecycleOwner = this
@@ -81,7 +81,7 @@ class LoginActivity : AppCompatActivity() {
     private fun loginAlert(respTime: Long, response: LoginResponse) {
         val loginDialog = AlertDialog.Builder(this)
             .setTitle("Login Status")
-            .setMessage("Code: ${response.code} Message: ${response.message} API Call Time: $respTime")
+            .setMessage("Code: ${response.code} \n Message: ${response.message} \n API Call Time: $respTime")
             .setPositiveButton("OK") { _, _ ->
                 onBackPressed()
                 loginViewModel.clear()
