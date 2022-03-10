@@ -4,18 +4,23 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import com.datechnologies.androidtest.MainActivity
 import com.datechnologies.androidtest.R
 import com.datechnologies.androidtest.api.ChatApi
+import com.datechnologies.androidtest.api.LoginResponse
 import com.datechnologies.androidtest.databinding.ActivityChatBinding
 import com.datechnologies.androidtest.databinding.ActivityLoginBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import retrofit2.Response
 
 /**
  * A screen that displays a login prompt, allowing the user to login to the D & A Technologies Web Server.
@@ -24,6 +29,7 @@ import kotlinx.coroutines.launch
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
+    private lateinit var loginViewModel: LoginViewModel
     //==============================================================================================
     // Lifecycle Methods
     //==============================================================================================
@@ -35,12 +41,8 @@ class LoginActivity : AppCompatActivity() {
         actionBar.setDisplayShowHomeEnabled(true)
         binding.lifecycleOwner = this
 
-        binding.buttonLogIn.setOnClickListener {
-            val email = binding.userNameInput.text.toString()
-            val password = binding.passwordInput.text.toString()
-            sendLoginInfo(email, password)
-            Log.i("LoginTest", "Email: $email Password: $password")
-        }
+        loginViewModel = LoginViewModel()
+
         // TODO: Make the UI look like it does in the mock-up. Allow for horizontal screen rotation.
         // TODO: Add a ripple effect when the buttons are clicked
         // TODO: Save screen state on screen rotation, inputted username and password should not disappear on screen rotation
@@ -57,21 +59,34 @@ class LoginActivity : AppCompatActivity() {
         // TODO: email: info@rapptrlabs.com
         // TODO: password: Test123
         // TODO: so please use those to test the login.
-    }
-    fun sendLoginInfo(email: String, pw: String) {
-        val job = Job()
-        val coroutineScope = CoroutineScope(job + Dispatchers.Main)
 
-        Log.i("LoginTest", "Api Called!")
-        coroutineScope.launch {
-            val response = ChatApi.retrofitService.sendLoginInfo(email, pw)
-            if (response.isSuccessful) {
-                val endpoint = response.body()
-                Log.i("LoginTest", "Code: ${endpoint?.code} Message: ${endpoint?.message}")
-            } else {
-                Log.i("LoginTest", "Failed!")
-            }
+        binding.buttonLogIn.setOnClickListener {
+            val email = binding.userNameInput.text.toString()
+            val password = binding.passwordInput.text.toString()
+            loginViewModel.sendLoginInfo(email, password)
+            Log.i("LoginActTest", "Email: $email Password: $password")
         }
+        // if responseTime changes & loginResponse exists. Alert is triggered.
+        // if loginResponse is null, means invalid
+        loginViewModel.responseTime.observe(this, Observer { respTime ->
+            val loginResponse = loginViewModel.loginResponse.value
+            if (loginResponse != null) {
+                loginAlert(respTime, loginResponse)
+            } else {
+                Toast.makeText(this, "User Name and/or Password Invalid!", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    private fun loginAlert(respTime: Long, response: LoginResponse) {
+        val loginDialog = AlertDialog.Builder(this)
+            .setTitle("Login Status")
+            .setMessage("Code: ${response.code} Message: ${response.message} API Call Time: $respTime")
+            .setPositiveButton("OK") { _, _ ->
+                onBackPressed()
+                loginViewModel.clear()
+            }.create()
+        loginDialog.show()
     }
 
     override fun onBackPressed() {
