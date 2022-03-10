@@ -39,7 +39,7 @@ class ChatActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_chat)
         // ActionBar
-        val actionBar: ActionBar = getSupportActionBar()!!
+        val actionBar: ActionBar = supportActionBar!!
         actionBar.setDisplayHomeAsUpEnabled(true)
         actionBar.setDisplayShowHomeEnabled(true)
         binding.lifecycleOwner = this
@@ -59,7 +59,6 @@ class ChatActivity : AppCompatActivity() {
 
         // TODO: Retrieve the chat data from http://dev.rapptrlabs.com/Tests/scripts/chat_log.php
         // TODO: Parse this chat data from JSON into ChatLogMessageModel and display it.
-
     }
 
     override fun onBackPressed() {

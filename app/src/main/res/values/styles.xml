@@ -33,6 +33,8 @@
     </style>
     <!-- Input Text Style -->
     <style name="LoginInput" parent="Widget.AppCompat.EditText">
+        <item name="android:textCursorDrawable">@drawable/ic_cursor_color</item>
+        <item name="android:backgroundTint">@color/colorPrimary</item>
         <item name="android:textColor">@color/login_input_text</item>
         <item name="android:textColorHint">@color/login_hint_text</item>
     </style>

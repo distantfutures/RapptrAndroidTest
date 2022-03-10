@@ -12,13 +12,13 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 class ChatViewModel : ViewModel() {
-    val job = Job()
-    val coroutineScope = CoroutineScope(job + Dispatchers.Main)
+    private val job = Job()
+    private val coroutineScope = CoroutineScope(job + Dispatchers.Main)
 
     private val _chatLog = MutableLiveData<List<ChatLogMessageModel>>()
     val chatLog: LiveData<List<ChatLogMessageModel>>
         get() = _chatLog
-
+    // is this necessary?
     init {
         getChatMessages()
     }
