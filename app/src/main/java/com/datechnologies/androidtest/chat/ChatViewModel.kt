@@ -13,8 +13,8 @@ import kotlinx.coroutines.launch
 import java.lang.Exception
 
 class ChatViewModel : ViewModel() {
-    private val job = Job()
-    private val coroutineScope = CoroutineScope(job + Dispatchers.Main)
+    private val viewModelJob = Job()
+    private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
     private val _chatLog = MutableLiveData<List<ChatLogMessageModel>>()
     val chatLog: LiveData<List<ChatLogMessageModel>>
@@ -24,18 +24,20 @@ class ChatViewModel : ViewModel() {
     val requestFailed: LiveData<Boolean>
         get() = _requestFailed
 
+    init {
+        getChatMessages()
+    }
+
     // Launches & receives request for chat log
-    fun getChatMessages() {
+    private fun getChatMessages() {
         Log.i("ChatActTest", "Api Called!")
         coroutineScope.launch {
             val response = AppApi.RETROFIT_SERVICE.getMessages()
-            try {
+            if (response.isSuccessful) {
                 val messages = response.body()
-                if (messages != null) {
-                    _chatLog.value = messages.data
-                }
-                Log.i("ChatActTest", "Messages: ${messages!!.data}")
-            } catch (e: Exception) {
+                _chatLog.value = messages!!.data
+                Log.i("ChatActTest", "Messages Check: ${response}")
+            } else {
                 _requestFailed.value = false
                 Log.i("ChatActTest", "Failed!")
             }

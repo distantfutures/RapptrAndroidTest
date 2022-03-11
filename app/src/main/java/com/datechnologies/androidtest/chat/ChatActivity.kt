@@ -44,9 +44,6 @@ class ChatActivity : AppCompatActivity() {
             adapter = chatAdapter
         }
 
-        // Retrieves messages from server
-        chatViewModel.getChatMessages()
-
         // Observes changes to chatLog in VM and updates recyclerView
         chatViewModel.chatLog.observe(this, Observer { log ->
             log?.let {
