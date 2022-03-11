@@ -1,4 +1,4 @@
-package com.datechnologies.androidtest.api
+package com.datechnologies.androidtest.api.data
 
 import com.google.gson.annotations.SerializedName
 

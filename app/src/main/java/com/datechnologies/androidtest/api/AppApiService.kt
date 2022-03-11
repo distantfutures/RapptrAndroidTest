@@ -1,6 +1,7 @@
 package com.datechnologies.androidtest.api
 
-import kotlinx.coroutines.Deferred
+import com.datechnologies.androidtest.api.data.ChatData
+import com.datechnologies.androidtest.api.data.LoginResponse
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -16,7 +17,7 @@ private val retrofit = Retrofit.Builder()
     .baseUrl(BASE_URL)
     .build()
 
-interface ChatApiService {
+interface AppApiService {
     @GET("Tests/scripts/chat_log.php")
     suspend fun getMessages():
             Response<ChatData>
@@ -29,8 +30,8 @@ interface ChatApiService {
     ): Response<LoginResponse>
 }
 
-object ChatApi {
-    val retrofitService: ChatApiService by lazy {
-        retrofit.create(ChatApiService::class.java)
+object AppApi {
+    val RETROFIT_SERVICE: AppApiService by lazy {
+        retrofit.create(AppApiService::class.java)
     }
 }

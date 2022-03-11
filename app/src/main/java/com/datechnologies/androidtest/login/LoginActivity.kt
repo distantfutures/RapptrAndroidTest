@@ -12,15 +12,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.datechnologies.androidtest.MainActivity
 import com.datechnologies.androidtest.R
-import com.datechnologies.androidtest.api.ChatApi
-import com.datechnologies.androidtest.api.LoginResponse
-import com.datechnologies.androidtest.databinding.ActivityChatBinding
+import com.datechnologies.androidtest.api.data.LoginResponse
 import com.datechnologies.androidtest.databinding.ActivityLoginBinding
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
-import retrofit2.Response
 
 /**
  * A screen that displays a login prompt, allowing the user to login to the D & A Technologies Web Server.
@@ -89,7 +82,7 @@ class LoginActivity : AppCompatActivity() {
     private fun loginAlert(respTime: Long, response: LoginResponse) {
         val loginDialog = AlertDialog.Builder(this)
             .setTitle("Login Status")
-            .setMessage("Code: ${response.code} \n Message: ${response.message} \n API Call Time: $respTime millisec")
+            .setMessage("Code: ${response.code} \nMessage: ${response.message} \nAPI Call Time: $respTime millisec")
             .setPositiveButton("OK") { _, _ ->
                 onBackPressed()
                 loginViewModel.clear()

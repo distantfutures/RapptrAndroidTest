@@ -3,25 +3,15 @@ package com.datechnologies.androidtest.chat
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.datechnologies.androidtest.MainActivity
 import com.datechnologies.androidtest.R
-import com.datechnologies.androidtest.api.ChatApi
-import com.datechnologies.androidtest.api.ChatLogMessageModel
 import com.datechnologies.androidtest.databinding.ActivityChatBinding
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
-import java.util.ArrayList
 
 /**
  * Screen that displays a list of chats from a chat log.

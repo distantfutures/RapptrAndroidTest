@@ -4,8 +4,8 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.datechnologies.androidtest.api.ChatApi
-import com.datechnologies.androidtest.api.LoginResponse
+import com.datechnologies.androidtest.api.AppApi
+import com.datechnologies.androidtest.api.data.LoginResponse
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -31,7 +31,7 @@ class LoginViewModel : ViewModel() {
     fun sendLoginInfo(email: String, pw: String) {
         Log.i("LoginVMTest", "Api Called! $email $pw")
         coroutineScope.launch {
-            val response = ChatApi.retrofitService.sendLoginInfo(email, pw)
+            val response = AppApi.RETROFIT_SERVICE.sendLoginInfo(email, pw)
             if (response.isSuccessful) {
                 _loginResponse.value = response.body()
                 _responseTime.value = apiResponseMilli(response)

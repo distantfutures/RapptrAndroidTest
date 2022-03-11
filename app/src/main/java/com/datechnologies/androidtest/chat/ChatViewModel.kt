@@ -4,8 +4,8 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.datechnologies.androidtest.api.ChatApi
-import com.datechnologies.androidtest.api.ChatLogMessageModel
+import com.datechnologies.androidtest.api.AppApi
+import com.datechnologies.androidtest.api.data.ChatLogMessageModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -28,7 +28,7 @@ class ChatViewModel : ViewModel() {
     fun getChatMessages() {
         Log.i("ChatActTest", "Api Called!")
         coroutineScope.launch {
-            val response = ChatApi.retrofitService.getMessages()
+            val response = AppApi.RETROFIT_SERVICE.getMessages()
             try {
                 val messages = response.body()
                 if (messages != null) {
