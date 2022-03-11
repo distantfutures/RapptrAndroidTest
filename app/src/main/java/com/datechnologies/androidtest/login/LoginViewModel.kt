@@ -5,7 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.datechnologies.androidtest.api.ChatApi
-import com.datechnologies.androidtest.api.ChatLogMessageModel
 import com.datechnologies.androidtest.api.LoginResponse
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -13,7 +12,10 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
-class LoginViewModel : ViewModel(){
+class LoginViewModel : ViewModel() {
+    //==============================================================================================
+    // Class Properties
+    //==============================================================================================
     private val job = Job()
     private val coroutineScope = CoroutineScope(job + Dispatchers.Main)
 
@@ -25,7 +27,7 @@ class LoginViewModel : ViewModel(){
     val loginResponse: LiveData<LoginResponse>
         get() = _loginResponse
 
-
+    // Sends Login Info to serve and receives responses that sets to LiveData
     fun sendLoginInfo(email: String, pw: String) {
         Log.i("LoginVMTest", "Api Called! $email $pw")
         coroutineScope.launch {
@@ -33,10 +35,6 @@ class LoginViewModel : ViewModel(){
             if (response.isSuccessful) {
                 _loginResponse.value = response.body()
                 _responseTime.value = apiResponseMilli(response)
-//                val endpoint = response.body()
-//                Log.i("LoginVMTest", "Code: ${endpoint?.code} Message: ${endpoint?.message}")
-//                val responseMilli = apiResponseMilli(response)
-//                Log.i("LoginVMTest", "Response Time: $responseMilli milli")
             } else {
                 _responseTime.value = apiResponseMilli(response)
                 clear()
@@ -44,9 +42,11 @@ class LoginViewModel : ViewModel(){
             }
         }
     }
-    fun clear(){
+
+    fun clear() {
         _loginResponse.value = null
     }
+
     private fun apiResponseMilli(response: Response<LoginResponse>) =
         response.raw().receivedResponseAtMillis() - response.raw().sentRequestAtMillis()
 }

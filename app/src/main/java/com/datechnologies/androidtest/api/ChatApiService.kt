@@ -1,5 +1,6 @@
 package com.datechnologies.androidtest.api
 
+import kotlinx.coroutines.Deferred
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

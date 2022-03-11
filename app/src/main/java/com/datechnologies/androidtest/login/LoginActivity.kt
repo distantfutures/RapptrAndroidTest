@@ -27,19 +27,24 @@ import retrofit2.Response
  *
  */
 class LoginActivity : AppCompatActivity() {
-
+    //==============================================================================================
+    // Class Properties
+    //==============================================================================================
     private lateinit var binding: ActivityLoginBinding
     private lateinit var loginViewModel: LoginViewModel
+
     //==============================================================================================
     // Lifecycle Methods
     //==============================================================================================
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
+        binding.lifecycleOwner = this
+
+        // Action Bar
         val actionBar: ActionBar = supportActionBar!!
         actionBar.setDisplayHomeAsUpEnabled(true)
         actionBar.setDisplayShowHomeEnabled(true)
-        binding.lifecycleOwner = this
 
         loginViewModel = LoginViewModel()
 
@@ -60,28 +65,31 @@ class LoginActivity : AppCompatActivity() {
         // TODO: password: Test123
         // TODO: so please use those to test the login.
 
+        // Sends a server request onClick
         binding.buttonLogIn.setOnClickListener {
             val email = binding.userNameInput.text.toString()
             val password = binding.passwordInput.text.toString()
             loginViewModel.sendLoginInfo(email, password)
             Log.i("LoginActTest", "Email: $email Password: $password")
         }
-        // if responseTime changes & loginResponse exists. Alert is triggered.
-        // if loginResponse is null, means invalid
+
+        // Observes responseTime & response status to determine login validation for AlertDialog
         loginViewModel.responseTime.observe(this, Observer { respTime ->
             val loginResponse = loginViewModel.loginResponse.value
             if (loginResponse != null) {
                 loginAlert(respTime, loginResponse)
             } else {
-                Toast.makeText(this, "User Name and/or Password Invalid!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "User Name and/or Password Invalid!", Toast.LENGTH_SHORT)
+                    .show()
             }
         })
     }
 
+    // Builds AlertDialog and shows received responses on successful login
     private fun loginAlert(respTime: Long, response: LoginResponse) {
         val loginDialog = AlertDialog.Builder(this)
             .setTitle("Login Status")
-            .setMessage("Code: ${response.code} \n Message: ${response.message} \n API Call Time: $respTime")
+            .setMessage("Code: ${response.code} \n Message: ${response.message} \n API Call Time: $respTime millisec")
             .setPositiveButton("OK") { _, _ ->
                 onBackPressed()
                 loginViewModel.clear()

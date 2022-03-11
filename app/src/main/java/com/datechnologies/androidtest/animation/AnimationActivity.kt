@@ -25,6 +25,9 @@ import com.datechnologies.androidtest.databinding.ActivityAnimationBinding
  * The icon can be moved around on the screen as well as animated.
  */
 class AnimationActivity : AppCompatActivity() {
+    //==============================================================================================
+    // Class Properties
+    //==============================================================================================
     private lateinit var binding: ActivityAnimationBinding
     //==============================================================================================
     // Lifecycle Methods
@@ -33,6 +36,8 @@ class AnimationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_animation)
+
+        // Action Bar
         val actionBar: ActionBar = supportActionBar!!
         actionBar.setDisplayHomeAsUpEnabled(true)
         actionBar.setDisplayShowHomeEnabled(true)
@@ -54,10 +59,14 @@ class AnimationActivity : AppCompatActivity() {
             dragThisView(it)
         }
     }
-    fun wiggleAnim(view: View) {
+
+    // Wiggle animation
+    private fun wiggleAnim(view: View) {
         val wiggleAnim = AnimationUtils.loadAnimation(this, R.anim.wiggle)
         view.startAnimation(wiggleAnim)
     }
+
+    // Sets view to be dragged
     private fun dragThisView(it: View): Boolean {
         val dropToast = "Click Me!"
         val itemDrag = ClipData.Item(dropToast)
@@ -71,6 +80,7 @@ class AnimationActivity : AppCompatActivity() {
         return true
     }
 
+    // Determines actions upon dragging and dropping
     private val dragListener = View.OnDragListener{ view, event ->
         when(event.action) {
             DragEvent.ACTION_DRAG_STARTED -> {
@@ -102,6 +112,8 @@ class AnimationActivity : AppCompatActivity() {
             else -> false
         }
     }
+
+    // Fades out image & sets Fade In string & function to button
     private fun fadeOutImage() {
         binding.apply {
             datechnologyImage.animate().alpha(0F).duration = 1000
@@ -109,6 +121,8 @@ class AnimationActivity : AppCompatActivity() {
             buttonFade.setOnClickListener { fadeInImage() }
         }
     }
+
+    // Fades in image & sets Fade Out string & function to button
     private fun fadeInImage() {
         binding.apply {
             datechnologyImage.animate().alpha(1F).duration = 1000

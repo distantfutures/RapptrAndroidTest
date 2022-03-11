@@ -1,4 +1,9 @@
 <resources>
+    <!-- Splash Screen -->
+    <style name="splashScreenTheme" parent="Theme.MaterialComponents.Light.NoActionBar" >
+        <item name="android:windowBackground">@drawable/gpc_splash</item>
+        <item name="android:statusBarColor">#000000</item>
+    </style>
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.DayNight.DarkActionBar">
         <item name="android:windowBackground">@drawable/splash_screen</item>
@@ -42,10 +47,5 @@
     <style name="ShapeAppearance.Image.Circular" parent="" >
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>
-    </style>
-    <!-- Splash Screen -->
-    <style name="splashScreenTheme" parent="Theme.MaterialComponents.Light.NoActionBar" >
-        <item name="android:windowBackground">@drawable/gpc_splash</item>
-        <item name="android:statusBarColor">#000000</item>
     </style>
 </resources>

@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -38,24 +39,38 @@ class ChatActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_chat)
+        binding.lifecycleOwner = this
 
         // ActionBar
         val actionBar: ActionBar = supportActionBar!!
         actionBar.setDisplayHomeAsUpEnabled(true)
         actionBar.setDisplayShowHomeEnabled(true)
-        binding.lifecycleOwner = this
 
+        // Initialize ViewModel & Adapter to bind adapter to RecyclerView
         chatViewModel = ChatViewModel()
         chatAdapter = ChatAdapter()
-        binding.recyclerView.layoutManager = LinearLayoutManager(this)
-        binding.recyclerView.adapter = chatAdapter
+        binding.recyclerView.apply {
+            layoutManager = LinearLayoutManager(this@ChatActivity)
+            adapter = chatAdapter
+        }
 
+        // Retrieves messages from server
         chatViewModel.getChatMessages()
+
+        // Observes changes to chatLog in VM and updates recyclerView
         chatViewModel.chatLog.observe(this, Observer { log ->
             log?.let {
                 chatAdapter.setChatLogMessageModelList(log)
             }
         })
+
+        // Observes if API call failed
+        chatViewModel.requestFailed.observe(this, Observer {
+            if (!it) {
+                Toast.makeText(this, "No Messages Retrieved!", Toast.LENGTH_SHORT).show()
+            }
+        })
+
         // TODO: Make the UI look like it does in the mock-up. Allow for horizontal screen rotation.
 
         // TODO: Retrieve the chat data from http://dev.rapptrlabs.com/Tests/scripts/chat_log.php

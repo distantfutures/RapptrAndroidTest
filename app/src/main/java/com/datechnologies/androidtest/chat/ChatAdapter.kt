@@ -29,6 +29,7 @@ class ChatAdapter : RecyclerView.Adapter<ChatAdapter.ChatViewHolder?>() {
         this.chatLogMessageModelList = chatLogMessageModelList
         notifyDataSetChanged()
     }
+    // Binds url image to avatarViewHolder
     private fun bindAvatarImage(
         chatLogMessageModel: ChatLogMessageModel,
         viewHolder: ChatViewHolder
@@ -63,15 +64,9 @@ class ChatAdapter : RecyclerView.Adapter<ChatAdapter.ChatViewHolder?>() {
     // ChatViewHolder Class
     //==============================================================================================
     class ChatViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var avatarImageView: ImageView
-        var messageTextView: TextView
-        var userNameTextView: TextView
-
-        init {
-            avatarImageView = view.findViewById<View>(R.id.avatarImageView) as ImageView
-            messageTextView = view.findViewById<View>(R.id.messageTextView) as TextView
-            userNameTextView = view.findViewById<View>(R.id.userNameTextView) as TextView
-        }
+        var avatarImageView: ImageView = view.findViewById<View>(R.id.avatarImageView) as ImageView
+        var messageTextView: TextView = view.findViewById<View>(R.id.messageTextView) as TextView
+        var userNameTextView: TextView = view.findViewById<View>(R.id.userNameTextView) as TextView
     }
 
     //==============================================================================================

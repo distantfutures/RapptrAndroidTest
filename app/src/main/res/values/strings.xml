@@ -1,15 +1,15 @@
 <resources>
+    <!-- Action Bar -->
     <string name="app_name">AndroidTest</string>
-
-    <!-- Main Screen Strings -->
     <string name="activity_main_title">Coding Tasks</string>
+    <!-- Main Screen -->
     <string name="chat_button">CHAT</string>
     <string name="login_button">LOGIN</string>
     <string name="animation_button">ANIMATION</string>
-    <string name="image_city_background">Image City Background</string>
+    <!-- Login Screen -->
     <string name="password">Password</string>
     <string name="email">Email</string>
+    <!-- Animation Screen -->
     <string name="fade_in">Fade In</string>
     <string name="fade_out">Fade Out</string>
-
 </resources>
